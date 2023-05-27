@@ -88,3 +88,33 @@ variable "container_port" {
   type        = string
   description = "Exposed container port"
 }
+
+variable "ecs_cluster_name" {
+  type        = string
+  description = "Name of the ecs cluster"
+  default     = "blockchain client ecs cluster"
+}
+
+variable "ecr_repo_name" {
+  type        = string
+  description = "Name of the ECR Repo"
+  default     = "eth-blockchain-client"
+}
+
+variable "alb_name" {
+  type        = string
+  description = "Name of the alb load balancing traffic to the blockchain client"
+  default     = "blockchain-client-alb"
+}
+
+variable "alb_trage_group_name" {
+  type        = string
+  description = "Name of the alb target group"
+  default     = "alb-target-group"
+}
+
+variable "blockchain_client_service_name" {
+  type        = string
+  description = "Name of the ecs service"
+  default     = "blochchain_client_service"
+}

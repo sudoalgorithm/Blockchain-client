@@ -1,7 +1,13 @@
 #ECR Repository
 resource "aws_ecr_repository" "blockchain_client_repo" {
-  name                 = "eth_blockchain_client"
+  name                 = var.ecr_repo_name
   image_tag_mutability = "MUTABLE"
+
+  tags = {
+    Name        = var.ecr_repo_name
+    environment = var.env
+    created_by  = local.created_by
+  }
 }
 
 #ECR Policy
