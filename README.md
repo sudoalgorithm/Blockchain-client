@@ -51,3 +51,33 @@ Server have started on port 3000
 
 - Terraform code to create ecs repo
 ![Alt text](images/terraform-validate-ecs.png)
+
+
+## Golang Lib used to build the application
+
+- Only use the standard packages provided by the golang language are used to build the application
+```
+import (
+	"bytes" #To convert the request data into byte so that it processed to from string at the application layer
+	"fmt" #To print the response
+	"io" #To read the reponse received for request 
+	"net/http" #Provides the necessary methods and public inteface to perform network request in golang
+)
+```
+
+## Terraform Modules Used
+- AWS Official Terraform and Docker Terraform Provider by kreuzwerker
+```
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "2.15.0"
+    }
+  }
+}
+``` 
