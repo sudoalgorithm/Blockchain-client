@@ -154,7 +154,7 @@ resource "aws_ecs_task_definition" "main_task" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   container_definitions = jsonencode([{
     name        = "blockchain-clinet"
-    image       = "${data.aws_ecr_image.container_image}:v1"
+    image       = "${aws_ecr_repository.blockchain_client_repo.image.id}"
     essential   = true
     environment = "${var.env}"
     portMappings = [{
@@ -252,7 +252,7 @@ resource "aws_alb_target_group" "main" {
 }
 
 resource "aws_alb_listener" "http" {
-  load_balancer_arn = aws_lb.blockchain_client_alb_name.id
+  load_balancer_arn = data.aws_lb.blockchain_client_alb_name.id
   port              = 80
   protocol          = "HTTP"
 
@@ -260,26 +260,13 @@ resource "aws_alb_listener" "http" {
     type = "redirect"
 
     redirect {
-      port        = 443
+      port        = 3000
       protocol    = "HTTPS"
       status_code = "HTTP_301"
     }
   }
 }
 
-resource "aws_alb_listener" "https" {
-  load_balancer_arn = aws_lb.blockchain_client_alb_name.id
-  port              = 443
-  protocol          = "HTTPS"
-
-  ssl_policy      = "ELBSecurityPolicy-2016-08"
-  certificate_arn = var.alb_tls_cert_arn
-
-  default_action {
-    target_group_arn = aws_alb_target_group.main.id
-    type             = "forward"
-  }
-}
 
 resource "aws_ecs_service" "blockchain_client_ecs_service" {
   name                               = var.blockchain_client_service_name

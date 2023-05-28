@@ -7,11 +7,13 @@ variable "aws_region" {
 variable "vpc_name" {
   type        = string
   description = "Name of the vpc"
+  default = "ecs_cluster"
 }
 
 variable "env" {
   type        = string
   description = "Target Environment example dev, staging and production"
+  default = "dev"
 }
 
 variable "vpc_cidr_range" {
@@ -53,11 +55,13 @@ variable "azs" {
 variable "internet_gateway" {
   type        = string
   description = "Name of the internet gateway"
+  default = "ecs_vpc_igw"
 }
 
 variable "public_route_table" {
   type        = string
   description = "Name of the route associated to public subnet"
+  default = "public_route_table"
 }
 
 variable "public_destination_cidr_block" {
@@ -87,6 +91,7 @@ variable "ecs_security_group" {
 variable "container_port" {
   type        = string
   description = "Exposed container port"
+  default = "3000"
 }
 
 variable "ecs_cluster_name" {
@@ -95,11 +100,7 @@ variable "ecs_cluster_name" {
   default     = "blockchain client ecs cluster"
 }
 
-variable "ecr_repo_name" {
-  type        = string
-  description = "Name of the ECR Repo"
-  default     = "eth-blockchain-client"
-}
+
 
 variable "alb_name" {
   type        = string
