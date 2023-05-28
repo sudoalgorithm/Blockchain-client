@@ -47,6 +47,7 @@ func proxyServer(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Println("Server have started on port 3000")
 	http.HandleFunc("/", proxyServer)
 	http.ListenAndServe(":3000", nil)
 }
