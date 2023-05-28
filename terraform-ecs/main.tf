@@ -154,7 +154,7 @@ resource "aws_ecs_task_definition" "main_task" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   container_definitions = jsonencode([{
     name        = "blockchain-clinet"
-    image       = "${aws_ecr_repository.blockchain_client_repo.image.id}"
+    image       = "${data.aws_ecr_image.container_image}"
     essential   = true
     environment = "${var.env}"
     portMappings = [{

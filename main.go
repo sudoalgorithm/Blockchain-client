@@ -42,8 +42,8 @@ func proxyServer(w http.ResponseWriter, r *http.Request) {
 		],
 		"id": 2
 	  }`)
-	fmt.Println(requestBodyOne)
-	fmt.Println(requestBodyTwo)
+	fmt.Println(post(string(requestBodyOne)))
+	fmt.Println(post(string(requestBodyTwo)))
 }
 
 func main() {

@@ -1,3 +1,10 @@
+variable "ecr_repo_name" {
+  type        = string
+  description = "Name of the ECR Repo"
+  default     = "eth-blockchain-client"
+}
+
+
 variable "aws_region" {
   type        = string
   description = "Targeted AWS Region"
